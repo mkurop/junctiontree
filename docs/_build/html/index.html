@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Welcome to JunctionTree algorithm’s documentation! &#8212; JunctionTree algorithm 0.1 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="welcome-to-junctiontree-algorithm-s-documentation">
+<h1>Welcome to JunctionTree algorithm’s documentation!<a class="headerlink" href="#welcome-to-junctiontree-algorithm-s-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<span class="target" id="module-junctiontree"></span><dl class="py class">
+<dt class="sig sig-object py" id="junctiontree.JunctionTree">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">junctiontree.</span></span><span class="sig-name descname"><span class="pre">JunctionTree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clusters</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cluster_tuples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">complete_graph</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/junctiontree.html#JunctionTree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTree" title="Permalink to this definition">¶</a></dt>
+<dd><p>class containing a junction tree</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="junctiontree.JunctionTree.show_tree">
+<span class="sig-name descname"><span class="pre">show_tree</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/junctiontree.html#JunctionTree.show_tree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTree.show_tree" title="Permalink to this definition">¶</a></dt>
+<dd><p>shows the tree</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="junctiontree.JunctionTreeFromBayesianGraph">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">junctiontree.</span></span><span class="sig-name descname"><span class="pre">JunctionTreeFromBayesianGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">networkx.classes.graph.Graph</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/junctiontree.html#JunctionTreeFromBayesianGraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTreeFromBayesianGraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a Junction Tree from possibly cycled directed bayesian graph.</p>
+<p>Consider a following product of factors</p>
+<p>Based on the above factors we create the folloing dictonary as an input to the algrithm creating a Junction Tree. In each factor we pick up a single variable as a head and treat the rematining variables as a tail</p>
+<p>C = {1 : [2, 4], 2 : [3, 4], 4: [5], 4 : [6,7], 1 : [7]}</p>
+<p>This representation requires usage of the alternative constructor provided by the static method from_c_dict.</p>
+<p>Running the Junction Tree algorithm over the above dictionary representation of the bayesian graph yields</p>
+<p>Default constructor takes as input a list of nodes and a list of 2-tuples representing edges. By default the graph is undirected. However even the directed graph is first internally converted to undirected graph and subsequently moralized.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nodes</strong> (<em>List</em>) – list of nodes</p></li>
+<li><p><strong>edges</strong> (<em>List</em><em>[</em><em>Tuple</em><em>]</em>) – list of edges (2-tuples)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="junctiontree.JunctionTreeFromBayesianGraph.compute">
+<span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#junctiontree.JunctionTree" title="junctiontree.JunctionTree"><span class="pre">junctiontree.JunctionTree</span></a><a class="reference internal" href="_modules/junctiontree.html#JunctionTreeFromBayesianGraph.compute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTreeFromBayesianGraph.compute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the complete algorithm forming the JunctionTree object at the end. This is the main API function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#junctiontree.JunctionTree" title="junctiontree.JunctionTree">JunctionTree</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="junctiontree.JunctionTreeFromBayesianGraph.compute_given_elimination_ordering">
+<span class="sig-name descname"><span class="pre">compute_given_elimination_ordering</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elimination_ordering</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#junctiontree.JunctionTree" title="junctiontree.JunctionTree"><span class="pre">junctiontree.JunctionTree</span></a><a class="reference internal" href="_modules/junctiontree.html#JunctionTreeFromBayesianGraph.compute_given_elimination_ordering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTreeFromBayesianGraph.compute_given_elimination_ordering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Executes the complete algorithm given predefined elimination ordering forming the JunctionTree object at the end.
+This is the main API function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#junctiontree.JunctionTree" title="junctiontree.JunctionTree">JunctionTree</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="junctiontree.JunctionTreeFromBayesianGraph.create_elimination_ordering">
+<span class="sig-name descname"><span class="pre">create_elimination_ordering</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="_modules/junctiontree.html#JunctionTreeFromBayesianGraph.create_elimination_ordering"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTreeFromBayesianGraph.create_elimination_ordering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find repeatedly vertex with minimal elimination cost, create elimination ordering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>List[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="junctiontree.JunctionTreeFromBayesianGraph.find_clusters">
+<span class="sig-name descname"><span class="pre">find_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">elimination_ordering</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="_modules/junctiontree.html#JunctionTreeFromBayesianGraph.find_clusters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTreeFromBayesianGraph.find_clusters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find clusters in a moral graph using elimination ordering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>elimination_ordering</strong> (<em>List</em><em>[</em><em>int</em><em>]</em>) – the elimination ordering as returned by the method create_eliminatioin_ordering</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[List]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="junctiontree.JunctionTreeFromBayesianGraph.remove_clusters_duplicates">
+<span class="sig-name descname"><span class="pre">remove_clusters_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clusters</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span><a class="reference internal" href="_modules/junctiontree.html#JunctionTreeFromBayesianGraph.remove_clusters_duplicates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTreeFromBayesianGraph.remove_clusters_duplicates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes duplicates from clusters, returns cluster tuples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>clusters</strong> (<em>List</em><em>[</em><em>List</em><em>]</em>) – clusters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[Tuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="junctiontree.JunctionTreeFromBayesianGraph.run_max_span_tree_algorithm">
+<span class="sig-name descname"><span class="pre">run_max_span_tree_algorithm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cluster_tuples</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/junctiontree.html#JunctionTreeFromBayesianGraph.run_max_span_tree_algorithm"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTreeFromBayesianGraph.run_max_span_tree_algorithm" title="Permalink to this definition">¶</a></dt>
+<dd><p>Using clusters tuples without duplicates, calculates complete graph using minimum spanning tree algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>cluster_tuples</strong> (<em>List</em><em>[</em><em>Tuple</em><em>]</em>) – clusters</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>nx.Graph()</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">JunctionTree algorithm</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2021, dr Marcin Kuropatwiński.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.0.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
