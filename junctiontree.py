@@ -36,9 +36,9 @@ class JunctionTreeFromBayesianGraph:
 
         \phi(1,2,4)\phi(2,3,4)\phi(4,5)\phi(4,6,7)\phi(1,7)
 
-    Based on the above factors we create the folloing dictonary as an input to the algrithm creating a Junction Tree. In each factor we pick up a single variable as a head and treat the rematining variables as a tail
+    Based on the above factors we create the following list of vactors as an input to the algrithm creating a Junction Tree. 
 
-    C = {1 : [2, 4], 2 : [3, 4], 4: [5], 4 : [6,7], 1 : [7]}
+    C = [(1, 2, 4), (2, 3, 4), (4, 5), (4, 6, 7), (1, 7)]
 
     This representation requires usage of the alternative constructor provided by the static method from_c_dict.
 
@@ -79,7 +79,14 @@ class JunctionTreeFromBayesianGraph:
     #      return cls(nodes, edges)
 
     @classmethod
-    def from_c_dict(cls, C : Dict[int, List]):
+    def from_c_dict(cls, C : Dict[int, List]) -> JunctionTreeFromBayesianGraph:
+        """Creates a moral graph from a dictionary representing the directed bayesian graph. In this representation each node has to be exactly one time as head.
+
+        :param C: input dictonary with heads ad keys and tails as values
+        :type C: Dict[int, List]
+        :return: an object of JunctionTreeFromBayesianGraph type
+        :rtype: JunctionTreeFromBayesianGraph
+        """
 
         # create cliques
         cliques = []
@@ -117,6 +124,13 @@ class JunctionTreeFromBayesianGraph:
 
     @classmethod
     def from_factors(cls, factors : List[Tuple]) -> JunctionTreeFromBayesianGraph:
+        """Creates cliques for each factor - a moral graph.
+
+        :param factors: a list of tuples, each tuple contains factor variables labels (ints)
+        :type factors: List[Tuple]
+        :return: an object of JunctionTreeFromBayesianGraph type
+        :rtype: JunctionTreeFromBayesianGraph
+        """
 
         graph = nx.Graph()
 
