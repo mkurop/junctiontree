@@ -69,9 +69,9 @@
 
 <span class="sd">        \phi(1,2,4)\phi(2,3,4)\phi(4,5)\phi(4,6,7)\phi(1,7)</span>
 
-<span class="sd">    Based on the above factors we create the folloing dictonary as an input to the algrithm creating a Junction Tree. In each factor we pick up a single variable as a head and treat the rematining variables as a tail</span>
+<span class="sd">    Based on the above factors we create the following list of vactors as an input to the algrithm creating a Junction Tree. </span>
 
-<span class="sd">    C = {1 : [2, 4], 2 : [3, 4], 4: [5], 4 : [6,7], 1 : [7]}</span>
+<span class="sd">    C = [(1, 2, 4), (2, 3, 4), (4, 5), (4, 6, 7), (1, 7)]</span>
 
 <span class="sd">    This representation requires usage of the alternative constructor provided by the static method from_c_dict.</span>
 
@@ -111,8 +111,15 @@
     <span class="c1">#                  edges.append((tail, head))</span>
     <span class="c1">#      return cls(nodes, edges)</span>
 
-    <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_c_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">C</span> <span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">]):</span>
+<div class="viewcode-block" id="JunctionTreeFromBayesianGraph.from_c_dict"><a class="viewcode-back" href="../index.html#junctiontree.JunctionTreeFromBayesianGraph.from_c_dict">[docs]</a>    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_c_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">C</span> <span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">List</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">JunctionTreeFromBayesianGraph</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Creates a moral graph from a dictionary representing the directed bayesian graph. In this representation each node has to be exactly one time as head.</span>
+
+<span class="sd">        :param C: input dictonary with heads ad keys and tails as values</span>
+<span class="sd">        :type C: Dict[int, List]</span>
+<span class="sd">        :return: an object of JunctionTreeFromBayesianGraph type</span>
+<span class="sd">        :rtype: JunctionTreeFromBayesianGraph</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># create cliques</span>
         <span class="n">cliques</span> <span class="o">=</span> <span class="p">[]</span>
@@ -146,10 +153,17 @@
 
         <span class="n">graph</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">nodes</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></div>
 
-    <span class="nd">@classmethod</span>
+<div class="viewcode-block" id="JunctionTreeFromBayesianGraph.from_factors"><a class="viewcode-back" href="../index.html#junctiontree.JunctionTreeFromBayesianGraph.from_factors">[docs]</a>    <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_factors</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">factors</span> <span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">JunctionTreeFromBayesianGraph</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Creates cliques for each factor - a moral graph.</span>
+
+<span class="sd">        :param factors: a list of tuples, each tuple contains factor variables labels (ints)</span>
+<span class="sd">        :type factors: List[Tuple]</span>
+<span class="sd">        :return: an object of JunctionTreeFromBayesianGraph type</span>
+<span class="sd">        :rtype: JunctionTreeFromBayesianGraph</span>
+<span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
 
@@ -190,7 +204,7 @@
 
         <span class="n">graph</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">nodes</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span></div>
 
     <span class="sd">&quot;&quot;&quot;Helper functions for the elimination ordering&quot;&quot;&quot;</span>
 

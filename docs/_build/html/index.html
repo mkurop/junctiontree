@@ -52,8 +52,8 @@
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">junctiontree.</span></span><span class="sig-name descname"><span class="pre">JunctionTreeFromBayesianGraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">networkx.classes.graph.Graph</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/junctiontree.html#JunctionTreeFromBayesianGraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTreeFromBayesianGraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a Junction Tree from possibly cycled directed bayesian graph.</p>
 <p>Consider a following product of factors</p>
-<p>Based on the above factors we create the folloing dictonary as an input to the algrithm creating a Junction Tree. In each factor we pick up a single variable as a head and treat the rematining variables as a tail</p>
-<p>C = {1 : [2, 4], 2 : [3, 4], 4: [5], 4 : [6,7], 1 : [7]}</p>
+<p>Based on the above factors we create the following list of vactors as an input to the algrithm creating a Junction Tree.</p>
+<p>C = [(1, 2, 4), (2, 3, 4), (4, 5), (4, 6, 7), (1, 7)]</p>
 <p>This representation requires usage of the alternative constructor provided by the static method from_c_dict.</p>
 <p>Running the Junction Tree algorithm over the above dictionary representation of the bayesian graph yields</p>
 <p>Default constructor takes as input a list of nodes and a list of 2-tuples representing edges. By default the graph is undirected. However even the directed graph is first internally converted to undirected graph and subsequently moralized.</p>
@@ -109,6 +109,40 @@ This is the main API function.</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[List]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="junctiontree.JunctionTreeFromBayesianGraph.from_c_dict">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_c_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">C</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span> </span><span class="pre">List</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#junctiontree.JunctionTreeFromBayesianGraph" title="junctiontree.JunctionTreeFromBayesianGraph"><span class="pre">junctiontree.JunctionTreeFromBayesianGraph</span></a><a class="reference internal" href="_modules/junctiontree.html#JunctionTreeFromBayesianGraph.from_c_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTreeFromBayesianGraph.from_c_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a moral graph from a dictionary representing the directed bayesian graph. In this representation each node has to be exactly one time as head.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>C</strong> (<em>Dict</em><em>[</em><em>int</em><em>, </em><em>List</em><em>]</em>) – input dictonary with heads ad keys and tails as values</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an object of JunctionTreeFromBayesianGraph type</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#junctiontree.JunctionTreeFromBayesianGraph" title="junctiontree.JunctionTreeFromBayesianGraph">JunctionTreeFromBayesianGraph</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="junctiontree.JunctionTreeFromBayesianGraph.from_factors">
+<em class="property"><span class="pre">classmethod</span> </em><span class="sig-name descname"><span class="pre">from_factors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factors</span></span><span class="p"><span class="pre">:</span></span> <span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> &#x2192; <a class="reference internal" href="#junctiontree.JunctionTreeFromBayesianGraph" title="junctiontree.JunctionTreeFromBayesianGraph"><span class="pre">junctiontree.JunctionTreeFromBayesianGraph</span></a><a class="reference internal" href="_modules/junctiontree.html#JunctionTreeFromBayesianGraph.from_factors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#junctiontree.JunctionTreeFromBayesianGraph.from_factors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates cliques for each factor - a moral graph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>factors</strong> (<em>List</em><em>[</em><em>Tuple</em><em>]</em>) – a list of tuples, each tuple contains factor variables labels (ints)</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>an object of JunctionTreeFromBayesianGraph type</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#junctiontree.JunctionTreeFromBayesianGraph" title="junctiontree.JunctionTreeFromBayesianGraph">JunctionTreeFromBayesianGraph</a></p>
 </dd>
 </dl>
 </dd></dl>
