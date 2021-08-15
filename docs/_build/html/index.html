@@ -55,7 +55,7 @@
 <p>Consider a following product of factors</p>
 <div class="math notranslate nohighlight">
 \[\phi(1,2,4)\phi(2,3,4)\phi(4,5)\phi(4,6,7)\phi(1,7)\]</div>
-<p>Based on the above factors we create the following list of vactors as an input to the algrithm creating a Junction Tree.</p>
+<p>Based on the above factors we create the following list of factors as an input to the algrithm creating a Junction Tree.</p>
 <p>C = [(1, 2, 4), (2, 3, 4), (4, 5), (4, 6, 7), (1, 7)]</p>
 <p>This representation requires usage of the alternative constructor provided by the static method from_factors.</p>
 <p>Running the Junction Tree algorithm over the above factor representation of the graph yields</p>
@@ -109,7 +109,7 @@ This is the main API function.</p>
 <dd><p>Find clusters in a moral graph using elimination ordering.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>elimination_ordering</strong> (<em>List</em><em>[</em><em>int</em><em>]</em>) – the elimination ordering as returned by the method create_eliminatioin_ordering</p>
+<dd class="field-odd"><p><strong>elimination_ordering</strong> (<em>List</em><em>[</em><em>int</em><em>]</em>) – the elimination ordering as returned by the method create_elimination_ordering</p>
 </dd>
 <dt class="field-even">Return type</dt>
 <dd class="field-even"><p>List[List]</p>
