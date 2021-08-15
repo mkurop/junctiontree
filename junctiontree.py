@@ -36,7 +36,7 @@ class JunctionTreeFromBayesianGraph:
 
         \phi(1,2,4)\phi(2,3,4)\phi(4,5)\phi(4,6,7)\phi(1,7)
 
-    Based on the above factors we create the following list of vactors as an input to the algrithm creating a Junction Tree. 
+    Based on the above factors we create the following list of factors as an input to the algrithm creating a Junction Tree. 
 
     C = [(1, 2, 4), (2, 3, 4), (4, 5), (4, 6, 7), (1, 7)]
 
@@ -258,7 +258,7 @@ class JunctionTreeFromBayesianGraph:
     def find_clusters(self, elimination_ordering: List[int]) -> List[List]:
         """Find clusters in a moral graph using elimination ordering.
 
-        :param elimination_ordering: the elimination ordering as returned by the method create_eliminatioin_ordering
+        :param elimination_ordering: the elimination ordering as returned by the method create_elimination_ordering
         :type elimination_ordering: List[int]
         :rtype: List[List]
         """
@@ -360,7 +360,7 @@ if __name__ == "__main__":
     # example of executing the JunctionTree computation
     # input graph
 
-    F = [(1,2,4), (2,3,4), (4,5), (4,5,7), (1,7)]
+    F = [(1,2,4), (2,3,4), (4,5), (4,6,7), (1,7)]
 
     #  F = [(1,3),(2,3)]
 
@@ -368,7 +368,7 @@ if __name__ == "__main__":
     jt = JunctionTreeFromBayesianGraph.from_factors(F)
 
     # running the algorithm
-    junction_tree = jt.compute_given_elimination_ordering([7,5,4,3,2,1])
+    junction_tree = jt.compute_given_elimination_ordering([7,6,5,4,3,2,1])
     #  junction_tree = jt.compute()
     # showing results
     junction_tree.show_tree()
