@@ -28,11 +28,11 @@ class JunctionTree:
 
 class JunctionTreeFromBayesianGraph:
     """
-    Creates a Junction Tree from possibly cycled directed bayesian graph.
+    Creates a Junction Tree from possibly cycled directed bayesian graph or a factor graph.
     
     Consider a following product of factors
 
-    .. math:
+    .. math::
 
         \phi(1,2,4)\phi(2,3,4)\phi(4,5)\phi(4,6,7)\phi(1,7)
 
@@ -40,17 +40,16 @@ class JunctionTreeFromBayesianGraph:
 
     C = [(1, 2, 4), (2, 3, 4), (4, 5), (4, 6, 7), (1, 7)]
 
-    This representation requires usage of the alternative constructor provided by the static method from_c_dict.
+    This representation requires usage of the alternative constructor provided by the static method from_factors.
 
-    Running the Junction Tree algorithm over the above dictionary representation of the bayesian graph yields
+    Running the Junction Tree algorithm over the above factor representation of the graph yields
 
-    Default constructor takes as input a list of nodes and a list of 2-tuples representing edges. By default the graph is undirected. However even the directed graph is first internally converted to undirected graph and subsequently moralized.
+    .. todo:: Add sample output
 
-    :param nodes: list of nodes
-    :type nodes: List
-    :param edges: list of edges (2-tuples)
-    :type edges: List[Tuple]
+    Default constructor takes as input an undirected moral graph. 
 
+    :param graph: the undirected moral graph created by one of the classmethods 
+    :type graph: nx.Graph
 
     """
     def __init__(self, graph : nx.Graph):
