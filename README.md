@@ -1,7 +1,7 @@
 # junctiontree
 Algorithm for turning bayesian graph or factor graph into a junction tree.
 
-To create conda environment with dependencies issue the following command
+To a create conda environment with dependencies issue the following command
 
 ```
 conda create --name <env> --file requirements.txt
