@@ -1,5 +1,5 @@
 # junctiontree
-Algorithm for turning bayesian graph or factor graph into a junction tree.
+Algorithm for turning a bayesian graph or a factor graph into a junction tree.
 
 To a create conda environment with dependencies issue the following command
 
